@@ -15,11 +15,12 @@
     --line: #DDD9D0;
     --ink: #17191A;
     --ink-soft: #55595C;
-    --muted: #8A8E90;
+    --muted: #6B6F72;
     --accent: #2F8F6E;
     --accent-ink: #FFFFFF;
     --accent-soft: #2F8F6E1A;
     --wave: #D6421E;
+    --speak: var(--accent);
     --shadow: 0 1px 2px rgba(23,25,26,0.04), 0 10px 24px rgba(23,25,26,0.045);
   }
   @media (prefers-color-scheme: dark) {
@@ -30,11 +31,12 @@
       --line: #2A2E30;
       --ink: #EEEFEC;
       --ink-soft: #AAB0AC;
-      --muted: #6E7577;
+      --muted: #868D90;
       --accent: #4FC590;
       --accent-ink: #082018;
       --accent-soft: #4FC5902A;
       --wave: #FF6B48;
+      --speak: var(--accent);
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 24px rgba(0,0,0,0.25);
     }
   }
@@ -45,11 +47,12 @@
     --line: #2A2E30;
     --ink: #EEEFEC;
     --ink-soft: #AAB0AC;
-    --muted: #6E7577;
+    --muted: #868D90;
     --accent: #4FC590;
     --accent-ink: #082018;
     --accent-soft: #4FC5902A;
     --wave: #FF6B48;
+    --speak: var(--accent);
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 24px rgba(0,0,0,0.25);
   }
 
@@ -61,6 +64,12 @@
     font-family: "Space Grotesk", -apple-system, sans-serif;
   }
   .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
 
   /* nav */
   .nav {
@@ -125,7 +134,7 @@
     background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
     font-size: 16px;
   }
-  .pill strong { display: block; font-size: 13.5px; margin-bottom: 2px; letter-spacing: -0.005em; }
+  .pill strong { display: block; font-size: 13px; font-weight: 700; margin-bottom: 2px; letter-spacing: -0.005em; }
   .pill p { margin: 0; font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
 
   .wave-card {
@@ -133,17 +142,17 @@
     padding: 20px; margin-bottom: 36px; overflow: hidden; box-shadow: var(--shadow);
   }
   .wave-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .wave-label span { font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--muted); letter-spacing: 0.03em; }
+  .wave-label span { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.03em; }
   .wave-svg { width: 100%; height: auto; display: block; }
   .wave-tag {
     display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
-    font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--wave);
+    font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--wave);
     background: color-mix(in srgb, var(--wave) 14%, transparent); padding: 4px 10px; border-radius: 100px;
   }
 
   .section-title {
-    font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0 0 14px;
+    font-family: "Space Grotesk", sans-serif; font-size: 20px; font-weight: 700;
+    letter-spacing: -0.01em; color: var(--ink); margin: 0 0 16px;
   }
 
   .info-card {
@@ -154,7 +163,7 @@
 
   .cta-card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
-    padding: 32px 26px; margin-bottom: 28px; box-shadow: var(--shadow);
+    padding: 32px 24px; margin-bottom: 28px; box-shadow: var(--shadow);
   }
   .cta-card h2 { font-size: 21px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
   .cta-card p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 20px; }
@@ -167,22 +176,81 @@
   .cta-note { font-size: 12px; color: var(--muted); margin-top: 12px; text-align: center; }
 
   .flow { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
-  .flow-row { display: flex; align-items: center; gap: 10px; }
+  .flow-row { display: flex; flex-direction: column; gap: 10px; }
+  @media (min-width: 560px) {
+    .flow-row { flex-direction: row; align-items: center; }
+    .flow-arrow { transform: none; }
+  }
   .mockup {
     flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
     padding: 12px; min-width: 0; box-shadow: var(--shadow);
   }
-  .mockup-bar { display: flex; gap: 5px; margin-bottom: 9px; }
+  .mockup-bar { display: flex; gap: 5px; margin-bottom: 8px; }
   .mockup-bar span { width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
-  .mockup-label { font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.02em; }
+  .mockup-label { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.02em; }
   .mockup-screen { background: var(--surface-2); border-radius: 7px; aspect-ratio: 16/9; position: relative; overflow: hidden; margin-bottom: 8px; }
+  .mockup-screen.compact { aspect-ratio: 16 / 4; }
   .mockup-clip { position: absolute; bottom: 6px; height: 10px; border-radius: 3px; background: var(--muted); opacity: 0.5; }
-  .mockup-caption { font-size: 11.5px; color: var(--ink-soft); line-height: 1.5; }
-  .flow-arrow { flex-shrink: 0; color: var(--muted); font-size: 18px; }
+  .mockup-clip--silence { background: var(--wave); opacity: 0.6; }
+  .mockup-caption { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+  .flow-arrow {
+    flex-shrink: 0; align-self: center; display: inline-block;
+    color: var(--muted); font-size: 18px; transform: rotate(90deg);
+  }
   .flow-row.ok .flow-arrow { color: var(--accent); }
-  .dead-end { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 0 10%; text-align: center; font-size: 11px; color: var(--ink-soft); font-family: "JetBrains Mono", monospace; }
 
-  .privacy-note { font-size: 11.5px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+  .wave-mini-note {
+    font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-soft);
+    margin-bottom: 6px; line-height: 1.4; letter-spacing: 0.01em;
+  }
+  .wave-mini { width: 100%; height: 100%; display: block; }
+
+  .flow-duration { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .flow-duration-num { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.01em; color: var(--ink); }
+  .flow-duration-num--after { color: var(--accent); }
+  .flow-duration-arrow { font-size: 16px; color: var(--muted); }
+  .flow-duration-hint { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); }
+
+  /* eEdit 박스: 무음 블록이 사라지며 뒤 클립이 당겨붙는 루프 애니메이션 */
+  /* data-left-after 기준 delta: clip1 6%→6%(이동 없음), clip2 46%→36%, clip3 74%→64% */
+  .mockup-screen[data-timeline="before"] { animation: eeditTimelineFade 7s ease-in-out infinite; }
+  .mockup-screen[data-timeline="before"] .mockup-clip--silence { animation: eeditSilenceCollapse 7s ease-in-out infinite; }
+  .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="2"] { animation: eeditClipShift2 7s ease-in-out infinite; }
+  .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="3"] { animation: eeditClipShift3 7s ease-in-out infinite; }
+
+  @keyframes eeditTimelineFade {
+    0%, 4% { opacity: 0; }
+    10%, 88% { opacity: 1; }
+    94%, 100% { opacity: 0; }
+  }
+  @keyframes eeditSilenceCollapse {
+    0%, 28% { width: 10%; opacity: 0.6; }
+    42%, 94% { width: 0%; opacity: 0; }
+    100% { width: 10%; opacity: 0.6; }
+  }
+  @keyframes eeditClipShift2 {
+    0%, 28% { left: 46%; }
+    42%, 94% { left: 36%; }
+    100% { left: 46%; }
+  }
+  @keyframes eeditClipShift3 {
+    0%, 28% { left: 74%; }
+    42%, 94% { left: 64%; }
+    100% { left: 74%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mockup-screen[data-timeline="before"],
+    .mockup-screen[data-timeline="before"] .mockup-clip--silence,
+    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="2"],
+    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="3"] {
+      animation: none;
+    }
+    .mockup-screen[data-timeline="before"] .mockup-clip--silence { width: 0; opacity: 0; }
+    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="2"] { left: 36%; }
+    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="3"] { left: 64%; }
+  }
+
+  .privacy-note { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
 
   footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); text-align: center; }
 </style>
@@ -197,7 +265,7 @@
 </header>
 
 <main>
-  <div class="eyebrow"><span class="dot"></span>2026-10 · 아직 코드 한 줄도 안 짰습니다</div>
+  <div class="eyebrow"><span class="dot"></span>2026-10 · 출시 준비 중</div>
 
   <h1>영상 하나 편집할 때마다,<br>무음 구간 자르는 데만 체감상 20분 쓰시나요</h1>
   <p class="lede">저도 편집하다가 이거 때문에 매번 짜증 나서 만들어보려고 합니다. 촬영본에서 말이 끊기고 비는 침묵 구간, "음...", "어..." 하신 다음 멍해지는 그 침묵까지 eEdit이 찾아서 타임코드로 뽑아줍니다 — 소리 자체가 아니라 그 뒤에 비는 구간이에요. 자르는 건 여전히 프리미어든 다빈치든 쓰시던 프로그램에서 하시면 됩니다.</p>
@@ -253,19 +321,38 @@
   </div>
 
   <div id="how">
-    <p class="section-title">상황</p>
+    <h2 class="section-title">상황</h2>
     <div class="info-card">
       <p>브루(Vrew) 써보셨으면 아실 텐데, 무음컷 자체는 잘 돼요. 다만 저는 색보정이랑 자막을 프리미어에서 마무리하는 편이라, 거기로 넘기는 길이 따로 없어서 결국 타임라인 보면서 손으로 다시 잘랐습니다. 쇼츠 만들 때마다 이걸 반복하다가, 그냥 만들어보기로 했습니다.</p>
     </div>
 
-    <p class="section-title">그래서 뭐가 다른가</p>
+    <h2 class="section-title">그래서 뭐가 다른가</h2>
     <div class="flow">
       <div class="flow-row">
         <div class="mockup">
           <div class="mockup-bar"><span></span><span></span><span></span></div>
           <div class="mockup-label">무음컷 전용 에디터</div>
-          <div class="mockup-screen">
-            <div class="dead-end">자르기까지는 여기서, 그 이후 작업은 다른 프로그램으로</div>
+          <div class="wave-mini-note">자르기는 여기까지 · 그 이후는 다른 프로그램</div>
+          <div class="mockup-screen compact">
+            <svg class="wave-mini" viewBox="0 0 400 100" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="110" y="6" width="50" height="88" fill="var(--wave)" opacity="0.14"/>
+              <rect x="260" y="6" width="40" height="88" fill="var(--wave)" opacity="0.14"/>
+              <g stroke="var(--speak)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85">
+                <path d="M0,50 L10,32 L20,62 L30,26 L40,66 L50,40 L60,56 L70,22 L80,62 L90,38 L100,50"/>
+              </g>
+              <g stroke="var(--wave)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6">
+                <path d="M110,50 L122,49 L134,51 L146,50 L158,49"/>
+              </g>
+              <g stroke="var(--speak)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85">
+                <path d="M160,50 L170,30 L180,64 L190,24 L200,60 L210,36 L220,52 L230,28 L240,58 L250,40 L260,50"/>
+              </g>
+              <g stroke="var(--wave)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6">
+                <path d="M260,50 L272,49 L284,51 L296,50 L300,50"/>
+              </g>
+              <g stroke="var(--speak)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85">
+                <path d="M300,50 L312,28 L324,66 L336,22 L348,62 L360,38 L372,54 L384,30 L396,58 L400,46"/>
+              </g>
+            </svg>
           </div>
           <div class="mockup-caption">색보정·자막은 보통 다른 프로그램에서 마무리하게 됨.</div>
         </div>
@@ -274,11 +361,18 @@
         <div class="mockup">
           <div class="mockup-bar"><span></span><span></span><span></span></div>
           <div class="mockup-label">eEdit</div>
-          <div class="mockup-screen">
-            <div class="mockup-clip" style="left:6%; width:18%;"></div>
-            <div class="mockup-clip" style="left:30%; width:10%; background:var(--wave); opacity:0.6;"></div>
-            <div class="mockup-clip" style="left:46%; width:22%;"></div>
-            <div class="mockup-clip" style="left:74%; width:14%;"></div>
+          <!-- 무음 블록(.mockup-clip--silence)이 사라지며 뒤 클립이 당겨붙는 루프 애니메이션 적용됨 (CSS @keyframes, 7s 주기) -->
+          <div class="mockup-screen" data-timeline="before">
+            <div class="mockup-clip mockup-clip--keep" data-clip="1" data-left-after="6%" style="left:6%; width:18%;"></div>
+            <div class="mockup-clip mockup-clip--silence" data-clip="silence-1" style="left:30%; width:10%;"></div>
+            <div class="mockup-clip mockup-clip--keep" data-clip="2" data-left-after="36%" style="left:46%; width:22%;"></div>
+            <div class="mockup-clip mockup-clip--keep" data-clip="3" data-left-after="64%" style="left:74%; width:14%;"></div>
+          </div>
+          <div class="flow-duration">
+            <span class="flow-duration-num">12:34</span>
+            <span class="flow-duration-arrow" aria-hidden="true">→</span>
+            <span class="flow-duration-num flow-duration-num--after">9:02</span>
+            <span class="flow-duration-hint">예시 수치</span>
           </div>
           <div class="mockup-caption">무음 구간(빨간 블록)만 찾아서 타임코드로 넘겨줌. 화면 자체는 안 만듦.</div>
         </div>
