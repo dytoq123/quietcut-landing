@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/static/pretendard.css">
 <style>
   :root {
     --bg: #F6F5F2;
@@ -61,9 +62,9 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-family: "Space Grotesk", "Pretendard", -apple-system, sans-serif;
   }
-  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .mono { font-family: "JetBrains Mono", "Pretendard", ui-monospace, monospace; }
 
   a:focus-visible, button:focus-visible {
     outline: 2px solid var(--accent);
@@ -85,7 +86,7 @@
   .logo { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
   .logo em { font-style: normal; color: var(--accent); }
   .nav-cta {
-    font-family: "Space Grotesk", sans-serif; text-decoration: none;
+    font-family: "Space Grotesk", "Pretendard", sans-serif; text-decoration: none;
     background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 13px;
     padding: 9px 16px; border-radius: 999px; white-space: nowrap;
   }
@@ -94,7 +95,7 @@
 
   .eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500;
+    font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 12px; font-weight: 500;
     letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
     margin-bottom: 22px;
   }
@@ -146,12 +147,12 @@
   .wave-svg { width: 100%; height: auto; display: block; }
   .wave-tag {
     display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
-    font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--wave);
+    font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 12px; color: var(--wave);
     background: color-mix(in srgb, var(--wave) 14%, transparent); padding: 4px 10px; border-radius: 100px;
   }
 
   .section-title {
-    font-family: "Space Grotesk", sans-serif; font-size: 20px; font-weight: 700;
+    font-family: "Space Grotesk", "Pretendard", sans-serif; font-size: 20px; font-weight: 700;
     letter-spacing: -0.01em; color: var(--ink); margin: 0 0 16px;
   }
 
@@ -160,6 +161,19 @@
     padding: 20px; margin: 0 0 36px; box-shadow: var(--shadow);
   }
   .info-card p { font-size: 15px; line-height: 1.7; color: var(--ink); margin: 0; }
+
+  .demo-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 16px; margin: 0 0 36px; box-shadow: var(--shadow); overflow: hidden;
+  }
+  .demo-label {
+    font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 11px; color: var(--muted);
+    letter-spacing: 0.02em; text-align: center; margin: 0 0 10px;
+  }
+  .demo-label:last-of-type { margin: 10px 0 0; }
+  .demo-video {
+    width: 100%; display: block; border-radius: 10px; background: var(--surface-2);
+  }
 
   .cta-card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
@@ -187,7 +201,7 @@
   }
   .mockup-bar { display: flex; gap: 5px; margin-bottom: 8px; }
   .mockup-bar span { width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
-  .mockup-label { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.02em; }
+  .mockup-label { font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 11px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.02em; }
   .mockup-screen { background: var(--surface-2); border-radius: 7px; aspect-ratio: 16/9; position: relative; overflow: hidden; margin-bottom: 8px; }
   .mockup-screen.compact { aspect-ratio: 16 / 4; }
   .mockup-clip { position: absolute; bottom: 6px; height: 10px; border-radius: 3px; background: var(--muted); opacity: 0.5; }
@@ -200,7 +214,7 @@
   .flow-row.ok .flow-arrow { color: var(--accent); }
 
   .wave-mini-note {
-    font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-soft);
+    font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 10px; color: var(--ink-soft);
     margin-bottom: 6px; line-height: 1.4; letter-spacing: 0.01em;
   }
   .wave-mini { width: 100%; height: 100%; display: block; }
@@ -209,7 +223,7 @@
   .flow-duration-num { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.01em; color: var(--ink); }
   .flow-duration-num--after { color: var(--accent); }
   .flow-duration-arrow { font-size: 16px; color: var(--muted); }
-  .flow-duration-hint { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); }
+  .flow-duration-hint { font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 11px; color: var(--muted); }
 
   /* eEdit 박스: 무음 블록이 사라지며 뒤 클립이 당겨붙는 루프 애니메이션 */
   /* data-left-after 기준 delta: clip1 6%→6%(이동 없음), clip2 46%→36%, clip3 74%→64% */
@@ -326,6 +340,30 @@
       <p>브루(Vrew) 써보셨으면 아실 텐데, 무음컷 자체는 잘 돼요. 다만 저는 색보정이랑 자막을 프리미어에서 마무리하는 편이라, 거기로 넘기는 길이 따로 없어서 결국 타임라인 보면서 손으로 다시 잘랐습니다. 쇼츠 만들 때마다 이걸 반복하다가, 그냥 만들어보기로 했습니다.</p>
     </div>
 
+    <div class="demo-card" id="demoCard">
+      <p class="demo-label">예시 영상 (실제 제품 아님)</p>
+      <video class="demo-video" id="demoVideo" autoplay muted loop playsinline preload="metadata"
+             onerror="document.getElementById('demoCard').style.display='none'">
+        <source src="demo.mp4" type="video/mp4">
+      </video>
+      <p class="demo-label">예시 영상 (실제 제품 아님)</p>
+    </div>
+    <script>
+      // demo.mp4가 없으면(404 등) 데모 영상 카드 자체를 숨김.
+      // video의 error 이벤트가 타이밍상 안 잡히는 경우를 대비해 짧은 타임아웃 fallback도 둠.
+      (function () {
+        var v = document.getElementById('demoVideo');
+        var card = document.getElementById('demoCard');
+        if (!v || !card) return;
+        function hide() { card.style.display = 'none'; }
+        v.addEventListener('error', hide);
+        setTimeout(function () {
+          if (!v.error && v.readyState > 0) return;
+          hide();
+        }, 2000);
+      })();
+    </script>
+
     <h2 class="section-title">그래서 뭐가 다른가</h2>
     <div class="flow">
       <div class="flow-row">
@@ -374,7 +412,7 @@
             <span class="flow-duration-num flow-duration-num--after">9:02</span>
             <span class="flow-duration-hint">예시 수치</span>
           </div>
-          <div class="mockup-caption">무음 구간(빨간 블록)만 찾아서 타임코드로 넘겨줌. 화면 자체는 안 만듦.</div>
+          <div class="mockup-caption">영상 파일을 직접 만들진 않아요 — 자를 위치만 알려드려서, 쓰시던 프로그램에서 그대로 작업하시면 됩니다.</div>
         </div>
         <span class="flow-arrow">→</span>
         <div class="mockup">
@@ -384,7 +422,7 @@
             <div class="mockup-clip" style="left:4%; width:40%;"></div>
             <div class="mockup-clip" style="left:48%; width:48%;"></div>
           </div>
-          <div class="mockup-caption">타임코드 보고 손으로 자르면 됩니다. 색보정·자막은 그대로 이어서. (EDL 내보내기는 다음 단계로 검토 중)</div>
+          <div class="mockup-caption">타임코드를 콕 집어드려서, 찾을 필요 없이 바로 잘라내시면 됩니다. 색보정·자막은 그대로 이어서. (EDL 내보내기는 다음 단계로 검토 중)</div>
         </div>
       </div>
     </div>
@@ -398,14 +436,13 @@
   </div>
 
   <p class="privacy-note">
-    남겨주신 이메일 주소와 편집 프로그램 정보는 이 제품 관련 연락(제작 여부 안내, 베타 초대) 외 다른 목적으로 쓰지 않고, 제작하지 않기로 결정되면 바로 삭제합니다. 연락을 원치 않으시면 언제든 회신으로 삭제 요청하실 수 있습니다.
+    남겨주신 이메일 주소와 편집 프로그램 정보는 이 제품 관련 연락(제작 여부 안내, 베타 초대) 외 다른 목적으로 쓰지 않고, 제작하지 않기로 결정되면 바로 삭제합니다. 연락을 원치 않으시거나 삭제를 요청하고 싶으시면 [이메일]로 언제든 연락해 주세요.
   </p>
 
   <footer>eEdit (가칭) · 1인 개발 프로젝트</footer>
 </main>
 
 <!-- 방문자 통계: GoatCounter (무료, 쿠키 미사용) -->
-<!-- MYCODE를 goatcounter.com 가입 후 받는 실제 사이트 코드로 바꿔야 작동합니다. 지금은 가짜 값이라 수집되지 않습니다. -->
 <script data-goatcounter="https://eedit.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
