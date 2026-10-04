@@ -63,6 +63,7 @@
     background: var(--bg);
     color: var(--ink);
     font-family: "Space Grotesk", "Pretendard", -apple-system, sans-serif;
+    word-break: keep-all;
   }
   .mono { font-family: "JetBrains Mono", "Pretendard", ui-monospace, monospace; }
 
@@ -174,19 +175,6 @@
   }
   .info-card p { font-size: 15px; line-height: 1.7; color: var(--ink); margin: 0; }
 
-  .demo-card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-    padding: 16px; margin: 0 0 36px; box-shadow: var(--shadow); overflow: hidden;
-  }
-  .demo-label {
-    font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 11px; color: var(--muted);
-    letter-spacing: 0.02em; text-align: center; margin: 0 0 10px;
-  }
-  .demo-label:last-of-type { margin: 10px 0 0; }
-  .demo-video {
-    width: 100%; display: block; border-radius: 10px; background: var(--surface-2);
-  }
-
   .cta-card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
     padding: 32px 24px; margin-bottom: 28px; box-shadow: var(--shadow);
@@ -213,11 +201,16 @@
   }
   .mockup-bar { display: flex; gap: 5px; margin-bottom: 8px; }
   .mockup-bar span { width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
-  .mockup-label { font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 11px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.02em; }
+  .mockup-label { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 11px; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.02em; }
+  .mockup-demo-badge {
+    font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 9px; font-weight: 400;
+    color: var(--muted); background: var(--surface-2); padding: 2px 7px; border-radius: 100px;
+    letter-spacing: 0.01em; white-space: nowrap;
+  }
   .mockup-screen { background: var(--surface-2); border-radius: 7px; aspect-ratio: 16/9; position: relative; overflow: hidden; margin-bottom: 8px; }
   .mockup-screen.compact { aspect-ratio: 16 / 4; }
+  .mockup-video { width: 100%; height: 100%; object-fit: cover; display: block; }
   .mockup-clip { position: absolute; bottom: 6px; height: 10px; border-radius: 3px; background: var(--muted); opacity: 0.5; }
-  .mockup-clip--silence { background: var(--wave); opacity: 0.6; }
   .mockup-caption { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
   .flow-arrow {
     flex-shrink: 0; align-self: center; display: inline-block;
@@ -237,45 +230,6 @@
   .flow-duration-arrow { font-size: 16px; color: var(--muted); }
   .flow-duration-hint { font-family: "JetBrains Mono", "Pretendard", monospace; font-size: 11px; color: var(--muted); }
 
-  /* eEdit 박스: 무음 블록이 사라지며 뒤 클립이 당겨붙는 루프 애니메이션 */
-  /* data-left-after 기준 delta: clip1 6%→6%(이동 없음), clip2 46%→36%, clip3 74%→64% */
-  .mockup-screen[data-timeline="before"] { animation: eeditTimelineFade 7s ease-in-out infinite; }
-  .mockup-screen[data-timeline="before"] .mockup-clip--silence { animation: eeditSilenceCollapse 7s ease-in-out infinite; }
-  .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="2"] { animation: eeditClipShift2 7s ease-in-out infinite; }
-  .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="3"] { animation: eeditClipShift3 7s ease-in-out infinite; }
-
-  @keyframes eeditTimelineFade {
-    0%, 4% { opacity: 0; }
-    10%, 88% { opacity: 1; }
-    94%, 100% { opacity: 0; }
-  }
-  @keyframes eeditSilenceCollapse {
-    0%, 28% { width: 10%; opacity: 0.6; }
-    42%, 94% { width: 0%; opacity: 0; }
-    100% { width: 10%; opacity: 0.6; }
-  }
-  @keyframes eeditClipShift2 {
-    0%, 28% { left: 46%; }
-    42%, 94% { left: 36%; }
-    100% { left: 46%; }
-  }
-  @keyframes eeditClipShift3 {
-    0%, 28% { left: 74%; }
-    42%, 94% { left: 64%; }
-    100% { left: 74%; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .mockup-screen[data-timeline="before"],
-    .mockup-screen[data-timeline="before"] .mockup-clip--silence,
-    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="2"],
-    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="3"] {
-      animation: none;
-    }
-    .mockup-screen[data-timeline="before"] .mockup-clip--silence { width: 0; opacity: 0; }
-    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="2"] { left: 36%; }
-    .mockup-screen[data-timeline="before"] .mockup-clip[data-clip="3"] { left: 64%; }
-  }
-
   .privacy-note { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
 
   footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); text-align: center; }
@@ -293,9 +247,9 @@
 <main>
   <div class="eyebrow"><span class="dot"></span>2026-10 · 출시 준비 중</div>
 
-  <h1>영상 하나 편집할 때마다,<br>무음 구간 자르는 데만 체감상 20분 쓰시나요</h1>
+  <h1>무음 구간 자르기, 아직도 손으로 하세요?</h1>
+  <p class="lede">영상 넣고 버튼 한 번. 말이 끊긴 구간을 eEdit이 찾아서, <span style="white-space:nowrap">프리미어·다빈치</span> 작업으로 바로 이어주는 걸 목표로 만들고 있어요.</p>
   <p class="hero-highlight">파이썬, 터미널, 명령어 없이 — 일반 프로그램처럼 설치하고 클릭 몇 번으로 끝내는 걸 목표로 만들고 있어요.</p>
-  <p class="lede">저도 편집하다가 이거 때문에 매번 짜증 나서 만들어보려고 합니다. 촬영본에서 말이 끊기고 비는 침묵 구간, "음...", "어..." 하신 다음 멍해지는 그 침묵까지 eEdit이 찾아서 타임코드로 뽑아줍니다 — 소리 자체가 아니라 그 뒤에 비는 구간이에요. 자르는 건 여전히 프리미어든 다빈치든 쓰시던 프로그램에서 하시면 됩니다.</p>
 
   <div class="hero-actions">
     <a class="btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScjPGU6yJbZxhOW4ERTAsgKpTm1DwJgvzgHnc_ZnUeVVtAp9w/viewform" target="_blank" rel="noopener">사전예약하기</a>
@@ -353,30 +307,6 @@
       <p>브루(Vrew) 써보셨으면 아실 텐데, 무음컷 자체는 잘 돼요. 다만 저는 색보정이랑 자막을 프리미어에서 마무리하는 편이라, 거기로 넘기는 길이 따로 없어서 결국 타임라인 보면서 손으로 다시 잘랐습니다. 쇼츠 만들 때마다 이걸 반복하다가, 그냥 만들어보기로 했습니다.</p>
     </div>
 
-    <div class="demo-card" id="demoCard">
-      <p class="demo-label">예시 영상 (실제 제품 아님)</p>
-      <video class="demo-video" id="demoVideo" autoplay muted loop playsinline preload="metadata"
-             onerror="document.getElementById('demoCard').style.display='none'">
-        <source src="demo.mp4" type="video/mp4">
-      </video>
-      <p class="demo-label">예시 영상 (실제 제품 아님)</p>
-    </div>
-    <script>
-      // demo.mp4가 없으면(404 등) 데모 영상 카드 자체를 숨김.
-      // video의 error 이벤트가 타이밍상 안 잡히는 경우를 대비해 짧은 타임아웃 fallback도 둠.
-      (function () {
-        var v = document.getElementById('demoVideo');
-        var card = document.getElementById('demoCard');
-        if (!v || !card) return;
-        function hide() { card.style.display = 'none'; }
-        v.addEventListener('error', hide);
-        setTimeout(function () {
-          if (!v.error && v.readyState > 0) return;
-          hide();
-        }, 2000);
-      })();
-    </script>
-
     <h2 class="section-title">그래서 뭐가 다른가</h2>
     <div class="flow">
       <div class="flow-row">
@@ -411,13 +341,11 @@
       <div class="flow-row ok">
         <div class="mockup">
           <div class="mockup-bar"><span></span><span></span><span></span></div>
-          <div class="mockup-label">eEdit</div>
-          <!-- 무음 블록(.mockup-clip--silence)이 사라지며 뒤 클립이 당겨붙는 루프 애니메이션 적용됨 (CSS @keyframes, 7s 주기) -->
-          <div class="mockup-screen" data-timeline="before">
-            <div class="mockup-clip mockup-clip--keep" data-clip="1" data-left-after="6%" style="left:6%; width:18%;"></div>
-            <div class="mockup-clip mockup-clip--silence" data-clip="silence-1" style="left:30%; width:10%;"></div>
-            <div class="mockup-clip mockup-clip--keep" data-clip="2" data-left-after="36%" style="left:46%; width:22%;"></div>
-            <div class="mockup-clip mockup-clip--keep" data-clip="3" data-left-after="64%" style="left:74%; width:14%;"></div>
+          <div class="mockup-label">eEdit <span class="mockup-demo-badge">예시 영상 · 실제 제품 아님</span></div>
+          <div class="mockup-screen">
+            <video class="mockup-video" autoplay muted loop playsinline preload="metadata">
+              <source src="demo.mp4" type="video/mp4">
+            </video>
           </div>
           <div class="flow-duration">
             <span class="flow-duration-num">12:34</span>
